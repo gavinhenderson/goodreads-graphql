@@ -1,0 +1,25 @@
+{
+  "name": "goodreads-graphql",
+  "version": "1.0.0",
+  "description": "GraphQL API to access goodreads data, might also include a shiny frontend one day",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavinhenderson/goodreads-graphql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gavinhenderson/goodreads-graphql/issues"
+  },
+  "homepage": "https://github.com/gavinhenderson/goodreads-graphql#readme"
+}
