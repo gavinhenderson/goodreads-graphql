@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./server/bin/www",
     "postinstall": "npm install --prefix app",
-    "build": "npm build --prefix app"
+    "build": "npm run build --prefix app"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
