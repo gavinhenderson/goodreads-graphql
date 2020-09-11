@@ -4,7 +4,9 @@
   "description": "GraphQL API to access goodreads data, might also include a shiny frontend one day",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/bin/www"
+    "start": "node ./server/bin/www",
+    "postinstall": "npm install --prefix app",
+    "build": "npm build --prefix app"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
