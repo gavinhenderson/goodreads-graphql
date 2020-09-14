@@ -17,6 +17,8 @@ const server = new ApolloServer({
     schema,
     resolvers,
   }),
+  introspection: true,
+  playground: true,
 });
 
 module.exports = server;
