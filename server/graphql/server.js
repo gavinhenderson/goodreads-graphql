@@ -1,19 +1,22 @@
-const { ApolloServer, gql } = require("apollo-server-express");
+const { ApolloServer } = require("apollo-server-express");
+const { loadSchemaSync } = require("@graphql-tools/load");
+const { GraphQLFileLoader } = require("@graphql-tools/graphql-file-loader");
+const { addResolversToSchema } = require("@graphql-tools/schema");
+const path = require("path");
 
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-// Provide resolver functions for your schema fields
 const resolvers = {
-  Query: {
-    hello: () => "Hello world!",
-  },
+  Query: require("./resolvers/query"),
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const schema = loadSchemaSync(path.join(__dirname, "schema/**/*.graphql"), {
+  loaders: [new GraphQLFileLoader()],
+});
+
+const server = new ApolloServer({
+  schema: addResolversToSchema({
+    schema,
+    resolvers,
+  }),
+});
 
 module.exports = server;

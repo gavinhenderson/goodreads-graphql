@@ -1,0 +1,10 @@
+"""
+Root query type
+"""
+type Query {
+  """
+  Query to make sure that the server is up and running, will
+  always return hello world
+  """
+  hello: String
+}
