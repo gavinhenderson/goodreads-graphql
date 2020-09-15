@@ -7,8 +7,6 @@
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
-    "@graphql-tools/graphql-file-loader": "^6.2.2",
-    "@graphql-tools/load": "^6.2.2",
     "@graphql-tools/schema": "^6.2.2",
     "apollo-server-express": "^2.17.0",
     "cookie-parser": "~1.4.4",

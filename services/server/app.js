@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const server = require("./graphql/server");
+const server = require("./apollo-server");
 
 const app = express();
 
