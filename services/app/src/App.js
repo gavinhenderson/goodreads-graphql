@@ -1,7 +1,8 @@
 import React from "react";
+import { Card } from "./design";
 
 function App() {
-  return <h1>App</h1>;
+  return <Card>App</Card>;
 }
 
 export default App;
