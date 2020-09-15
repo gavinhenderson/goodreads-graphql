@@ -3,22 +3,14 @@
   "version": "1.0.0",
   "description": "GraphQL API to access goodreads data, might also include a shiny frontend one day",
   "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
   "scripts": {
-    "start": "node ./server/bin/www",
-    "dev": "nodemon ./server/bin/www",
-    "postinstall": "npm install --prefix app",
-    "build": "npm run build --prefix app"
-  },
-  "dependencies": {
-    "@graphql-tools/graphql-file-loader": "^6.2.2",
-    "@graphql-tools/load": "^6.2.2",
-    "@graphql-tools/schema": "^6.2.2",
-    "apollo-server-express": "^2.17.0",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "graphql": "^15.3.0",
-    "morgan": "~1.9.1"
+    "start": "npm run start --prefix services/server",
+    "dev": "npm run dev --prefix services/server",
+    "build": "npm run build --prefix services/app"
   },
   "repository": {
     "type": "git",
@@ -29,14 +21,5 @@
   "bugs": {
     "url": "https://github.com/gavinhenderson/goodreads-graphql/issues"
   },
-  "homepage": "https://github.com/gavinhenderson/goodreads-graphql#readme",
-  "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^2.0.4"
-  }
+  "homepage": "https://github.com/gavinhenderson/goodreads-graphql#readme"
 }
