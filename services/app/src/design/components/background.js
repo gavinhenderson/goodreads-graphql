@@ -9,5 +9,5 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   position: fixed;
-  background: ghostwhite;
+  background: rgba(244, 241, 234, 0.5);
 `;

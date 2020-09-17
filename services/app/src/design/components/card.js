@@ -7,7 +7,9 @@ export const Card = ({ children, className }) => {
 
 const Container = styled.div`
   padding: 1rem;
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 1px #d0d0c8;
+  border: 1px solid #d0d0c8;
+
   border-radius: 0.2rem;
   background: white;
 `;
