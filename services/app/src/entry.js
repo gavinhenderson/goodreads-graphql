@@ -19,7 +19,15 @@ function App() {
         <IntroCard>
           <Heading>{signInCard.heading}</Heading>
           <Paragraph>{signInCard.body}</Paragraph>
-          <SignInButton>{signInCard.button}</SignInButton>
+          <SignInButton
+            onClick={() => {
+              // TODO dont do this, its a hack, it should be a link not a button
+              console.log("test");
+              window.location.href = "/auth/redirect";
+            }}
+          >
+            {signInCard.button}
+          </SignInButton>
         </IntroCard>
       </NarrowPage>
     </Background>

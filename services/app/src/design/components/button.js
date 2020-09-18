@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Button = ({ children, className }) => {
-  return <ButtonWrapper className={className}>{children}</ButtonWrapper>;
+export const Button = ({ children, ...props }) => {
+  return <ButtonWrapper {...props}>{children}</ButtonWrapper>;
 };
 
 const ButtonWrapper = styled.button`
