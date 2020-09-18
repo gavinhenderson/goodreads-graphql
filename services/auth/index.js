@@ -10,6 +10,14 @@ authRouter.get("/redirect", async (req, res) => {
   res.redirect(url);
 });
 
+authRouter.get("/callback", (req, res) => {
+  const { oauth_token } = req.query;
+
+  req.session.oauthToken = oauth_token;
+
+  res.redirect("/");
+});
+
 module.exports = {
   authRouter,
 };

@@ -16,7 +16,7 @@ class AuthService {
       GOODREADS_KEY,
       GOODREADS_SECRET,
       version,
-      AUTH_CALLBACK_URL,
+      AUTH_CALLBACK_URL + "/auth/callback",
       encryption
     );
   }

@@ -7,7 +7,29 @@ const logger = require("morgan");
 const server = require("./apollo-server");
 const { authRouter } = require("@goodreads-graphql/auth");
 
+const { SESSION_SECRET } = process.env;
+
 const app = express();
+
+const session = require("express-session");
+
+app.use(
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(function (req, res, next) {
+  if (!req.session.oauthToken) {
+    req.session.oauthToken = null;
+  }
+
+  req.token = req.session.oauthToken;
+
+  next();
+});
 
 app.use(logger("dev"));
 
