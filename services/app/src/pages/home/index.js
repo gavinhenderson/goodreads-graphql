@@ -7,12 +7,12 @@ import {
   Button,
   Paragraph,
   copy,
-} from "./design";
+} from "../../design";
 import styled from "styled-components";
 
 const { signInCard } = copy;
 
-function App() {
+const Home = () => {
   return (
     <Background>
       <NarrowPage>
@@ -22,7 +22,6 @@ function App() {
           <SignInButton
             onClick={() => {
               // TODO dont do this, its a hack, it should be a link not a button
-              console.log("test");
               window.location.href = "/auth/redirect";
             }}
           >
@@ -32,7 +31,7 @@ function App() {
       </NarrowPage>
     </Background>
   );
-}
+};
 
 const SignInButton = styled(Button)`
   margin-top: 1rem;
@@ -45,4 +44,4 @@ const IntroCard = styled(Card)`
   flex-direction: column;
 `;
 
-export default App;
+export default Home;

@@ -10,7 +10,6 @@ const server = new ApolloServer({
     resolvers,
   }),
   introspection: true,
-  playground: true,
 });
 
 module.exports = server;
