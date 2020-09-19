@@ -30,7 +30,7 @@ class AuthService {
   }
 
   async getAuthUrl() {
-    const { error, token } = await this.getOAuthRequestToken();
+    const { error, token, secret } = await this.getOAuthRequestToken();
 
     if (error) {
       throw new Error(error);
@@ -38,7 +38,17 @@ class AuthService {
 
     const callback = this.service._authorize_callback;
 
-    return `${URL}/oauth/authorize?oauth_token=${token}&oauth_callback=${callback}`;
+    return {
+      token,
+      secret,
+      url: `${URL}/oauth/authorize?oauth_token=${token}&oauth_callback=${callback}`,
+    };
+  }
+
+  getAuthHeaders(url, oauthToken, oauthSecret) {
+    const headers = this.service.authHeader(url, oauthToken, oauthSecret);
+
+    return headers;
   }
 }
 

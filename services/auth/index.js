@@ -1,23 +1,34 @@
 const express = require("express");
 const AuthService = require("./service");
-const authRouter = express.Router();
 
-const authService = new AuthService();
+const setupAuthRouter = (authService) => {
+  const authRouter = express.Router();
 
-authRouter.get("/redirect", async (req, res) => {
-  const url = await authService.getAuthUrl();
+  authRouter.get("/redirect", async (req, res) => {
+    const { url, token, secret } = await authService.getAuthUrl();
 
-  res.redirect(url);
-});
+    req.session.token = token;
+    req.session.secret = secret;
 
-authRouter.get("/callback", (req, res) => {
-  const { oauth_token } = req.query;
+    console.log(req.session);
 
-  req.session.oauthToken = oauth_token;
+    res.redirect(url);
+  });
 
-  res.redirect("/");
-});
+  authRouter.get("/callback", (req, res) => {
+    const { oauth_token: oauthToken } = req.query;
+
+    req.session.oauthToken = oauthToken;
+
+    console.log(req.session);
+
+    res.redirect("/");
+  });
+
+  return authRouter;
+};
 
 module.exports = {
-  authRouter,
+  setupAuthRouter,
+  AuthService,
 };

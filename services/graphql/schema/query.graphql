@@ -7,4 +7,9 @@ type Query {
   always return hello world
   """
   hello: String
+
+  """
+  Returns the logged in user
+  """
+  currentUser: User
 }

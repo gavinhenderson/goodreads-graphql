@@ -4,14 +4,16 @@ require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const server = require("./apollo-server");
-const { authRouter } = require("@goodreads-graphql/auth");
+const createApolloServer = require("./apollo-server");
+const { AuthService, setupAuthRouter } = require("@goodreads-graphql/auth");
+const session = require("express-session");
 
 const { SESSION_SECRET } = process.env;
 
 const app = express();
 
-const session = require("express-session");
+const authService = new AuthService();
+const authRouter = setupAuthRouter(authService);
 
 app.use(
   session({
@@ -25,8 +27,6 @@ app.use(function (req, res, next) {
   if (!req.session.oauthToken) {
     req.session.oauthToken = null;
   }
-
-  req.token = req.session.oauthToken;
 
   next();
 });
@@ -42,6 +42,7 @@ app.use("/auth", authRouter);
 
 app.use(express.static(path.join(__dirname, "../app/build")));
 
+const server = createApolloServer(authService);
 server.applyMiddleware({ app });
 
 module.exports = app;

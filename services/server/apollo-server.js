@@ -1,15 +1,26 @@
 const { ApolloServer } = require("apollo-server-express");
 const { addResolversToSchema } = require("@graphql-tools/schema");
-const path = require("path");
 
 const { resolvers, schema } = require("@goodreads-graphql/graphql");
 
-const server = new ApolloServer({
-  schema: addResolversToSchema({
-    schema,
-    resolvers,
-  }),
-  introspection: true,
-});
+const createApolloServer = (authService) => {
+  const server = new ApolloServer({
+    schema: addResolversToSchema({
+      schema,
+      resolvers,
+    }),
+    introspection: true,
+    playground: {
+      settings: {
+        "request.credentials": "same-origin",
+      },
+    },
+    context: ({ req }) => {
+      return { authService, session: req.session };
+    },
+  });
 
-module.exports = server;
+  return server;
+};
+
+module.exports = createApolloServer;
