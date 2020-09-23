@@ -1,11 +1,16 @@
-const currentUser = (authService, { secret, token }) => {
-  console.log("RAN");
+const currentUser = async (authService, { token }) => {
+  // console.log("RAN");
 
-  const headers = authService.getAuthHeaders("/test", secret, token);
+  // console.log("token", token);
 
-  console.log({ headers });
+  // const test = await authService.get(
+  //   "/https://www.goodreads.com/api/auth_user",
+  //   token
+  // );
 
-  return { id: 1 };
+  // console.log({ test });
+
+  return { id: 1, token };
 };
 
 module.exports = {

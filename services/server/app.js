@@ -7,6 +7,7 @@ const logger = require("morgan");
 const createApolloServer = require("./apollo-server");
 const { AuthService, setupAuthRouter } = require("@goodreads-graphql/auth");
 const session = require("express-session");
+const redis = require("redis");
 
 const { SESSION_SECRET } = process.env;
 
@@ -15,8 +16,12 @@ const app = express();
 const authService = new AuthService();
 const authRouter = setupAuthRouter(authService);
 
+const RedisStore = require("connect-redis")(session);
+const redisClient = redis.createClient(process.env.REDIS_URL);
+
 app.use(
   session({
+    store: new RedisStore({ client: redisClient }),
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,

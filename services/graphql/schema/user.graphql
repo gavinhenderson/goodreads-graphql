@@ -1,3 +1,4 @@
 type User {
   id: ID!
+  token: String!
 }
