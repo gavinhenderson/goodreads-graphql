@@ -5,7 +5,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const createApolloServer = require("./apollo-server");
-const { AuthService, setupAuthRouter } = require("@goodreads-graphql/auth");
+const { setupAuthRouter } = require("@goodreads-graphql/auth");
 const session = require("express-session");
 const redis = require("redis");
 
@@ -13,8 +13,7 @@ const { SESSION_SECRET } = process.env;
 
 const app = express();
 
-const authService = new AuthService();
-const authRouter = setupAuthRouter(authService);
+const authRouter = setupAuthRouter();
 
 const RedisStore = require("connect-redis")(session);
 const redisClient = redis.createClient(process.env.REDIS_URL);
@@ -47,7 +46,7 @@ app.use("/auth", authRouter);
 
 app.use(express.static(path.join(__dirname, "../app/build")));
 
-const server = createApolloServer(authService);
+const server = createApolloServer();
 server.applyMiddleware({ app });
 
 module.exports = app;

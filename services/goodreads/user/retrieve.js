@@ -1,14 +1,14 @@
-const currentUser = async (authService, { token }) => {
-  // console.log("RAN");
+const { authenticatedGet } = require("@goodreads-graphql/auth");
 
-  // console.log("token", token);
+const currentUser = async ({ token, secret }) => {
+  const result = await authenticatedGet(
+    "https://www.goodreads.com/api/auth_user",
+    token,
+    secret
+  );
 
-  // const test = await authService.get(
-  //   "/https://www.goodreads.com/api/auth_user",
-  //   token
-  // );
-
-  // console.log({ test });
+  console.log({ token, secret });
+  console.log({ result });
 
   return { id: 1, token };
 };

@@ -3,7 +3,7 @@ const { addResolversToSchema } = require("@graphql-tools/schema");
 
 const { resolvers, schema } = require("@goodreads-graphql/graphql");
 
-const createApolloServer = (authService) => {
+const createApolloServer = () => {
   const server = new ApolloServer({
     schema: addResolversToSchema({
       schema,
@@ -16,7 +16,7 @@ const createApolloServer = (authService) => {
       },
     },
     context: ({ req }) => {
-      return { authService, session: req.session };
+      return { session: req.session };
     },
   });
 

@@ -1,11 +1,11 @@
 const express = require("express");
-const AuthService = require("./service");
+const { getAuthUrl, authenticatedGet } = require("./service");
 
-const setupAuthRouter = (authService) => {
+const setupAuthRouter = () => {
   const authRouter = express.Router();
 
   authRouter.get("/redirect", async (req, res) => {
-    const { url, token, secret } = await authService.getAuthUrl();
+    const { url, token, secret } = await getAuthUrl();
 
     req.session.token = token;
     req.session.secret = secret;
@@ -30,5 +30,5 @@ const setupAuthRouter = (authService) => {
 
 module.exports = {
   setupAuthRouter,
-  AuthService,
+  authenticatedGet,
 };
